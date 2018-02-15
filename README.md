@@ -1,9 +1,7 @@
 Sample ACL role for OpenSwitch OPX
 ====================================
 
-This sample role facilitates the configuration of ACL table/entries supported using CPS API in OPX. 
-
-The ansible-role-opx-acl role requires an SSH connection for connectivity to a OPX device. 
+This sample role facilitates the configuration of ACL table/entries supported using CPS API in OpenSwitch OPX. The ansible-role-opx-acl role requires an SSH connection for connectivity to a OPX device. 
 
 Installation
 ------------
@@ -13,21 +11,21 @@ Installation
 Role variables
 --------------
 
-- Role is abstracted using the *ansible_net_os_name* variable that needs the value "openswitch".
+- Role is abstracted using the *ansible_net_os_name* variable that needs the value "openswitch"
 - Variables and values are case-sensitive
 
 **ansible-role-opx-acl keys**
 
 | Key        | Type                      | Description                                             |
 |------------|---------------------------|---------------------------------------------------------|
-| ``opx_acl`` | list        | Configuration to create/delete of ACL table/entry. (see ``opx_acl.*``)       |
+| ``opx_acl`` | list        | Configuration to create/delete of ACL table/entry (see ``opx_acl.*``)       |
 | ``opx_acl.operation`` | string: create,delete | Specifies whether to add or remove an an ACL table or entry; if unspecified, the value is set to *create* by default  |
-| ``opx_acl.acl_tbl_attr_data`` | dictionary | Configures attibutes to be set in CPS for ACL table. For complete attributes, refer to the yang model of ACL table. (see ``acl_tbl_attr_data.*``) |
+| ``opx_acl.acl_tbl_attr_data`` | dictionary | Configures attibutes to be set in CPS for ACL table. For complete attributes, see the YANG model of ACL table (see ``acl_tbl_attr_data.*``) |
 | ``acl_tbl_attr_data.name`` | string          | Configures the ACL table name         |
 | ``acl_tbl_attr_data.stage`` | integer          | Configures 1 if INGRESS, 2 if EGRESS         |
 | ``acl_tbl_attr_data.priority`` | integer          | Configures the priority for the ACL table         |
-| ``acl_tbl_attr_data.allowed-match-fields`` | list of integer          | Configures the ACL table. Refer the ACL yang model for the values to be specified         |
-| ``opx_acl.acl_entries`` | list | Configures attibutes to be set in CPS for ACL entries operation. For complete attributes, refer to the yang model of ACL entry. (see ``acl_entries.*``) |
+| ``acl_tbl_attr_data.allowed-match-fields`` | list of integer          | Configures the ACL table; see the ACL YANG model for the values to be specified         |
+| ``opx_acl.acl_entries`` | list | Configures attibutes to be set in CPS for ACL entries operation; see the YANG model of ACL entry for complete attributes (see ``acl_entries.*``) |
 | ``acl_entries.name`` | string         | Configures the ACL entry name         |
 | ``acl_entries.priority`` | integer         | Configures the priority of the ACL entry         |
 
@@ -86,4 +84,4 @@ It writes a simple playbook that only references the *ansible-role-opx-acl* role
 
     ansible-playbook -i hosts leaf.yaml
 
-(c) 2017 Dell EMC
+(c) 2018 Dell EMC
